@@ -1,0 +1,44 @@
+<main class="stage">
+  <div class="card">
+    <p class="eyebrow">Status report</p>
+
+    <h1 class="headline">
+      Egor <span class="accent">not bombing</span> for
+    </h1>
+
+    <div class="dial">
+      <svg viewBox="0 0 300 300" aria-hidden="true">
+        <circle class="track" cx="150" cy="150" r="140" />
+        <circle
+          class="progress"
+          cx="150"
+          cy="150"
+          r="140"
+          [attr.stroke-dasharray]="ringCircumference"
+          [attr.stroke-dashoffset]="ringCircumference * (1 - minuteProgress())"
+        />
+      </svg>
+      <div class="dial-content" aria-live="polite">
+        <span class="minutes">{{ minutes() }}</span>
+        <span class="unit">{{ minutes() === 1 ? 'minute' : 'minutes' }}</span>
+        <span class="clock">{{ clock() }}</span>
+      </div>
+    </div>
+
+    <button type="button" class="reset" (click)="reset()">
+      <span class="reset-icon">💥</span>
+      He bombed. Reset
+    </button>
+
+    <dl class="stats">
+      <div>
+        <dt>Best streak</dt>
+        <dd>{{ bestMinutes() }} min</dd>
+      </div>
+      <div>
+        <dt>Resets this session</dt>
+        <dd>{{ resetCount() }}</dd>
+      </div>
+    </dl>
+  </div>
+</main>
